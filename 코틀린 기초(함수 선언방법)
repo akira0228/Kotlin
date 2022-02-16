@@ -1,3 +1,5 @@
+<pre>
+<code
 fun main() {
    val kotlin = "🙂"
    val test = 1
@@ -16,3 +18,5 @@ fun main() {
 fun sum(a:Int, b:Int): Int {
     return a + b
 }
+</code>
+</pre>
