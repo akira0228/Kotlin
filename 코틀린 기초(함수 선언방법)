@@ -8,7 +8,6 @@ println(kotlin)
 println(test)
 println(test2)
 println(test+test2)
-
 println("1과 10중 최댓값은 ${maxOf(1,10)}입니다.");
 //함수 선언1
 println("함수 선언 방법 1번 결과값 : ${sum(10,20)}")
