@@ -1,0 +1,38 @@
+//facebook SDK 
+// accessToken을 받아 유저 정보를 조회하는 sdk file
+object FacebookSDK {
+    val context = APIContext(
+        "accessToken 정보",
+        "appSecret 정보",
+        "appId 정보"
+    )
+}
+
+fun main() {
+    val id = User("me", FacebookSDK.context).id
+    val accounts = User("me", FacebookSDK.context).accounts.requestInstagramBusinessAccountField().execute()
+    val l = mutableListOf<String>()
+    var current2 = accounts
+    
+    //test 1
+    while (!current2.isEmpty()) {
+        for (c in current2) {
+            val facebookId = c.id
+            val id = c.fieldInstagramBusinessAccount.id
+            l.add(c.fieldInstagramBusinessAccount.id)
+        }
+        current2 = current2.nextPage()
+        println(current2)
+
+    }
+    
+    //test2
+    val ids = sequence {
+        var current = accounts
+        while (!current.isEmpty()) {
+            yieldAll(current.map { it.fieldInstagramBusinessAccount.id })
+            current = current.nextPage()
+            println(current)
+        }
+    }.toList()
+}
