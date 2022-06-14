@@ -1,0 +1,33 @@
+## 안전한 null 처리 방법
+Android Java에서 Kotlin으로 convert 해보면 @NotNull과 @Nullable이 조금 다르게 표현됨을 볼 수 있습니다.
+
+다음의 코드를
+
+public void set(@NotNull String a, @Nullable String b) {
+  // Do noting
+}
+Convert를 통해서 kotlin으로 변환하면 다음과 같은 코드가 나오게 됩니다.
+
+fun set(a: String, b: String?) {
+// Do noting
+}
+기존 @NotNull을 포함하던 코드는 아래와 같이 아무것도 없이 변환됩니다.
+
+@NotNull String a -> a: String
+@Nullable으로 작성하였던 b String은 ? 포함되었습니다.
+
+Kotlin에서는 ?는 Java의 Nullable 임을 뜻합니다.
+
+@Nullable String b -> b: String?
+다시 코틀린으로 돌아와서 문법 오류를 통해서 NotNull과 Nullable을 확인할 수 있습니다.
+
+var temp: String = "abc"
+temp = null // 문법 오류
+위의 String은 NotNull을 뜻 함으로 null 입력이 불가능하며, 문법상 오류가 발생하게 됩니다.
+
+null을 사용하고 싶다면 다음과 같이 물음표를 포함하는 코드를 작성해야 합니다.
+
+var temp: String? = "abc"
+temp = null
+이 경우에는 null을 담을 수 있고, null이 포함되더라도 문법 오류가 발생하지 않습니다.
+
